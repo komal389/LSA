@@ -1,1 +1,37 @@
 
+Install Samba to share folder or files between Windows and Linux
+
+step 1 - first of all we have to update your apt
+command - $ sudo apt-get update 
+
+step 2 - Now inttaling samba
+command - $ sudo apt install samba
+
+step 3 - Now we are going to make directory so we can share samba
+command - mkdir /home/kali/samba_share/
+
+step 4 - Editing the config file at 
+         ls /home/kali/test_samba 
+         cd /home/kali/test_samba/
+         $ echo "komal" > a.txt
+         ls
+         cat a.txt
+         we have to insert this config file
+         [samba_share]
+            comment = Welcome to samba
+            path = /home/username/samba_share
+            read only = no
+            browsable = yes
+            
+step 5 -   Start/Restart the service     
+           $  sudo nano /etc/samba/smb.conf
+           $  sudo service smbd restart
+           $  sudo ufw allow samba
+           Now we'll set up a samba password for the user
+           sudo smbpasswd -a username
+           $ sudo smbpasswd -a kali
+   
+Open the file explorer, type smb://<ip-address>/<shared_file>
+
+smb://127.0.0.1/samba_share
+Image   
